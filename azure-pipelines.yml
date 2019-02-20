@@ -17,15 +17,17 @@ steps:
   displayName: 'build $(buildConfiguration)'
   
 - task: DotNetCoreCLI@2
+  displayName: 'test'
   inputs:
     command: test
-    projects: '**/tests/*.csproj'
+    projects: '**/tests/**.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
-- script: dotnet pack --configuration $(buildConfiguration)
+- script: dotnet pack --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
   displayName: 'pack $(buildConfiguration)'
   
 - task: PublishBuildArtifacts@1
+  displayName: 'publish'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'drop' 
