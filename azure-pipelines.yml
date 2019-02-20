@@ -20,7 +20,7 @@ steps:
   displayName: 'test'
   inputs:
     command: test
-    projects: '**/tests/**.csproj'
+    projects: '**/tests/**/*.csproj'
     arguments: '--configuration $(buildConfiguration)'
 
 - script: dotnet pack --configuration $(buildConfiguration) --output $(Build.ArtifactStagingDirectory)
