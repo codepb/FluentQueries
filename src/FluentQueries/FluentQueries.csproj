@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard1.3</TargetFramework>
+    <Authors>Paul Burgess</Authors>
+    <Company>Paul Burgess</Company>
+    <Product>FluentQueries</Product>
+    <Description>Fluent API for querying. To be used to provide a fluent API alternative to LINQ.</Description>
+    <Copyright>Paul Burgess</Copyright>
+    <PackageLicenseUrl>https://opensource.org/licenses/MIT</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/codepb/FluentQueries</PackageProjectUrl>
+    <PackageIconUrl>https://raw.githubusercontent.com/codepb/FluentQueries/master/logo/logo.png</PackageIconUrl>
+    <RepositoryUrl>https://github.com/codepb/FluentQueries</RepositoryUrl>
+    <PackageTags>Querying, Queries, Query, Fluent, Fluent API, LINQ</PackageTags>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Reflection.TypeExtensions" Version="4.5.1" />
+  </ItemGroup>
+
+</Project>
