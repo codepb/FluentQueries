@@ -46,5 +46,54 @@ namespace DDDToolkit.Querying.Tests
 
             _testEntity.Satisfies(query).Should().BeFalse();
         }
+
+        [Fact]
+        public void ContainingCorrectlyReturnsTrue()
+        {
+            var query = Query<TestEntity>.Has(a => a.A).Containing("b").And.Has(a => a.B).Containing("ef");
+
+            _testEntity.Satisfies(query).Should().BeTrue();
+        }
+
+        [Fact]
+        public void ContainingCorrectlyReturnsFalse()
+        {
+            var query = Query<TestEntity>.Has(a => a.A).Containing("ab").And.Has(a => a.B).Containing("fg");
+
+            _testEntity.Satisfies(query).Should().BeFalse();
+        }
+
+        [Fact]
+        public void NullOrWhitespaceCorrectlyReturnsTrue()
+        {
+            var query = Query<string>.Is.NullOrWhitespace();
+
+            "   ".Satisfies(query).Should().BeTrue();
+        }
+
+        [Fact]
+        public void NullOrWhitespaceCorrectlyReturnsFalse()
+        {
+            var query = Query<string>.Is.NullOrWhitespace();
+
+            "a".Satisfies(query).Should().BeFalse();
+        }
+
+        [Fact]
+        public void NullOrEmptyCorrectlyReturnsTrue()
+        {
+            var query = Query<string>.Is.NullOrEmpty();
+
+            "".Satisfies(query).Should().BeTrue();
+            query.IsSatisfiedBy(null).Should().BeTrue();
+        }
+
+        [Fact]
+        public void NullOrEmptyCorrectlyReturnsFalse()
+        {
+            var query = Query<string>.Is.NullOrEmpty();
+
+            "    ".Satisfies(query).Should().BeFalse();
+        }
     }
 }
