@@ -1,11 +1,8 @@
-﻿using DDDToolkit.Querying.Tests.Entities;
-using FluentAssertions;
-using System;
+﻿using FluentAssertions;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
-namespace DDDToolkit.Querying.Tests
+namespace FluentQueries.Tests
 {
     public class Query_EnumerableExtensionsShould
     {

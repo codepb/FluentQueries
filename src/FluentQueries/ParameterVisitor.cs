@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
-namespace DDDToolkit.Querying
+namespace FluentQueries
 {
     class ParameterVisitor : ExpressionVisitor
     {

@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Reflection;
 using System.Text;
 
-namespace DDDToolkit.Querying
+namespace FluentQueries
 {
     public static class QueryBuilderIEnumerableExtensions
     {

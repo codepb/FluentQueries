@@ -1,8 +1,8 @@
-﻿using DDDToolkit.Querying.Tests.Entities;
-using FluentAssertions;
+﻿using FluentAssertions;
+using FluentQueries.Tests.Entities;
 using Xunit;
 
-namespace DDDToolkit.Querying.Tests
+namespace FluentQueries.Tests
 {
     public class Query_SyntaxShould
     {

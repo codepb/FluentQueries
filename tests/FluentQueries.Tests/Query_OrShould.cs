@@ -1,7 +1,7 @@
 ﻿using FluentAssertions;
 using Xunit;
 
-namespace DDDToolkit.Querying.Tests
+namespace FluentQueries.Tests
 {
     public class Query_OrShould
     {

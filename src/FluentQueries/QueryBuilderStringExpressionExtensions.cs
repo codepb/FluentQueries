@@ -2,7 +2,7 @@
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace DDDToolkit.Querying
+namespace FluentQueries
 {
     public static class QueryBuilderStringExpressionExtensions
     {

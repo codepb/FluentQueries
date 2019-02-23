@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 
-namespace DDDToolkit.Querying
+namespace FluentQueries
 {
     public static class QueryBuilderBooleanExtensions
     {

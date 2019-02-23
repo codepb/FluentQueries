@@ -4,7 +4,7 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace DDDToolkit.Querying
+namespace FluentQueries
 {
     public class QueryBuilderExpression<T, TProp>
     {

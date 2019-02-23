@@ -1,11 +1,9 @@
 ﻿using FluentAssertions;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 using Xunit;
 
-namespace DDDToolkit.Querying.Tests
+namespace FluentQueries.Tests
 {
     public class Query_ImplicitConversionShould
     {
