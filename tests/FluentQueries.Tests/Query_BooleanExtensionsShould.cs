@@ -1,10 +1,7 @@
 ﻿using FluentAssertions;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
-namespace DDDToolkit.Querying.Tests
+namespace FluentQueries.Tests
 {
     public class Query_BooleanExtensionsShould
     {

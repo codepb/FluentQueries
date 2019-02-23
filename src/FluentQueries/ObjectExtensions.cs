@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DDDToolkit.Querying
+namespace FluentQueries
 {
     public static class ObjectExtensions
     {

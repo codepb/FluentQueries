@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 
-namespace DDDToolkit.Querying
+namespace FluentQueries
 {
     public class Query<T> : IQuery<T> 
     {

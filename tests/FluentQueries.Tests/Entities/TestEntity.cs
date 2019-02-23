@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DDDToolkit.Querying.Tests.Entities
+﻿namespace FluentQueries.Tests.Entities
 {
     class TestEntity
     {

@@ -1,4 +1,4 @@
-﻿namespace DDDToolkit.Querying.Tests.Entities
+﻿namespace FluentQueries.Tests.Entities
 {
     class TestEntityChild
     {
