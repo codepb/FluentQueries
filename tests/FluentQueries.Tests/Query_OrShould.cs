@@ -11,33 +11,27 @@ namespace DDDToolkit.Querying.Tests
         [Fact]
         public void CorrectlyHandleNesting()
         {
-            _b.AndSatisfying(_c.OrSatisfying(_a)).IsSatisfiedBy("b").Should().BeFalse();
+            _b.And.Is.Satisfying(_c.Or.Is.Satisfying(_a)).IsSatisfiedBy("b").Should().BeFalse();
         }
 
         [Fact]
         public void ReturnTrueWhenRightHandSideIsTrue()
         {
-            _b.AndSatisfying(_c).OrSatisfying(_a).IsSatisfiedBy("a").Should().BeTrue();
+            _b.Or.Is.Satisfying(_a).IsSatisfiedBy("a").Should().BeTrue();
         }
 
         [Fact]
         public void ReturnTrueWhenLeftHandSideIsTrue()
         {
-            var query = _a.AndSatisfying(_a).OrSatisfying(_b);
+            var query = _a.And.Is.Satisfying(_a).Or.Is.Satisfying(_b);
             query.IsSatisfiedBy("a").Should().BeTrue();
         }
 
-        [Fact]
-        public void ReturnTrueWhenLeftHandSideIsTrueUsingPropertySyntax()
-        {
-            var query = _a.AndSatisfying(_a).OrSatisfying(_b);
-            query.IsSatisfiedBy("a").Should().BeTrue();
-        }
 
         [Fact]
         public void ReturnFalseWhenBothSidesAreFalse()
         {
-            _b.AndSatisfying(_a).OrSatisfying(_c).IsSatisfiedBy("a").Should().BeFalse();
+            _b.And.Is.Satisfying(_a).Or.Is.Satisfying(_c).IsSatisfiedBy("a").Should().BeFalse();
         }
     }
 }

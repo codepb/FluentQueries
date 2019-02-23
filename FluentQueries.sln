@@ -7,9 +7,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{58B2FF67-BC3
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{000DB580-C83D-4B83-A8DD-DC42996B777B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Querying", "src\DDDToolkit.Querying\DDDToolkit.Querying.csproj", "{9CB2BC46-158A-4413-BEFC-F85A4A102C35}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentQueries", "src\FluentQueries\FluentQueries.csproj", "{9CB2BC46-158A-4413-BEFC-F85A4A102C35}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DDDToolkit.Querying.Tests", "tests\DDDToolkit.Querying.Tests\DDDToolkit.Querying.Tests.csproj", "{F00C874B-74A4-4BBB-BF3B-78381F98A974}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FluentQueries.Tests", "tests\FluentQueries.Tests\FluentQueries.Tests.csproj", "{F00C874B-74A4-4BBB-BF3B-78381F98A974}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

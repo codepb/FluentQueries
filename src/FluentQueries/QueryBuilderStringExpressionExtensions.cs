@@ -24,10 +24,20 @@ namespace DDDToolkit.Querying
         public static Query<T> EndingWith<T>(this QueryBuilderExpression<T, string> queryBuilderExpression, string other)
             => BuildQuery("EndsWith", queryBuilderExpression, other);
 
-        public static Query<T> NullOrWhitespace<T>(this QueryBuilderExpression<T, string> queryBuilderExpression, string other)
-            => BuildQuery("IsNullOrWhiteSpace", queryBuilderExpression, other);
+        public static Query<T> NullOrWhitespace<T>(this QueryBuilderExpression<T, string> queryBuilderExpression)
+        {
+            var method = typeof(string).GetMethod("IsNullOrWhiteSpace", BindingFlags.Public | BindingFlags.Static);
+            var expression = Expression.Call(method, queryBuilderExpression._expression.Body);
+            var lambda = Expression.Lambda<Func<T, bool>>(expression, queryBuilderExpression._expression.Parameters);
+            return queryBuilderExpression._continueWith(new Query<T>(lambda));
+        }
 
-        public static Query<T> NullOrEmpty<T>(this QueryBuilderExpression<T, string> queryBuilderExpression, string other)
-            => BuildQuery("IsNullOrEmpty", queryBuilderExpression, other);
+        public static Query<T> NullOrEmpty<T>(this QueryBuilderExpression<T, string> queryBuilderExpression)
+        {
+            var method = typeof(string).GetMethod("IsNullOrEmpty", BindingFlags.Public | BindingFlags.Static);
+            var expression = Expression.Call(method, queryBuilderExpression._expression.Body);
+            var lambda = Expression.Lambda<Func<T, bool>>(expression, queryBuilderExpression._expression.Parameters);
+            return queryBuilderExpression._continueWith(new Query<T>(lambda));
+        }
     }
 }

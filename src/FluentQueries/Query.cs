@@ -7,7 +7,7 @@ namespace DDDToolkit.Querying
     {
         private Expression<Func<T, bool>> _expression;
 
-        public Query() { }
+        protected Query() { }
 
         public Query(Expression<Func<T, bool>> expression)
         {
@@ -42,16 +42,11 @@ namespace DDDToolkit.Querying
             
             var lambda = Expression.Lambda<Func<T, bool>>(e3, _expression.Parameters);
             return new Query<T>(lambda);
-        }
-
-        public IQuery<T> AndSatisfying(IQuery<T> query) => CreateNewQuery(query, Expression.AndAlso);
-        public IQuery<T> OrSatisfying(IQuery<T> query) => CreateNewQuery(query, Expression.OrElse);        
+        }      
 
         public Expression<Func<T, bool>> AsExpression() => _expression;
     
         public bool IsSatisfiedBy(T subject) => AsExpression().Compile()(subject);
-
-        public static Query<T> Satisfies(Expression<Func<T, bool>> query) => new Query<T>(query);
 
         public static QueryBuilderExpression<T, TProp> Has<TProp>(Expression<Func<T, TProp>> expression)
             => new QueryBuilderExpression<T, TProp>(expression);
