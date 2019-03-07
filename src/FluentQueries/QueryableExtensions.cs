@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Text;
 
 namespace FluentQueries
 {
-    public static class QueryableExtensions
+    internal static class QueryableExtensions
     {
-        public static Expression<Func<TResult, bool>> WithParameter<TResult, TSource>(this Expression<Func<TSource, bool>> source, Expression<Func<TResult, TSource>> selector)
+        internal static Expression<Func<TResult, bool>> WithParameter<TResult, TSource>(this Expression<Func<TSource, bool>> source, Expression<Func<TResult, TSource>> selector)
         {
             // Replace parameter with body of selector
             var replaceParameter = new ParameterVisitor(source.Parameters, selector.Body);

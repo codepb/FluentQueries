@@ -24,6 +24,20 @@ namespace FluentQueries.Tests
         }
 
         [Fact]
+        public void NotContainsShouldCorrectlyReturnTrue()
+        {
+            var query = Query<IEnumerable<int>>.Is.NotContaining(6);
+            _testEnumerable.Satisfies(query).Should().BeTrue();
+        }
+
+        [Fact]
+        public void NotContainsShouldCorrectlyReturnFalse()
+        {
+            var query = Query<IEnumerable<int>>.Is.NotContaining(3);
+            _testEnumerable.Satisfies(query).Should().BeFalse();
+        }
+
+        [Fact]
         public void NotEmptyShouldCorrectlyReturnTrue()
         {
             var query = Query<IEnumerable<int>>.Is.NotEmpty();
