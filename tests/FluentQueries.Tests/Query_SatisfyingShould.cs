@@ -6,7 +6,7 @@ namespace FluentQueries.Tests
 {
     public class Query_SatisfyingShould
     {
-        private TestEntity _testEntity = new TestEntity()
+        private readonly TestEntity _testEntity = new TestEntity()
         {
             A = "abc",
             B = "def",
