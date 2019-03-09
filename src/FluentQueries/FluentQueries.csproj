@@ -12,8 +12,12 @@
     <PackageIconUrl>https://raw.githubusercontent.com/codepb/FluentQueries/master/logo/logo.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/codepb/FluentQueries</RepositoryUrl>
     <PackageTags>Querying, Queries, Query, Fluent, Fluent API, LINQ</PackageTags>
-    <Version>1.2.0</Version>
+    <Version>1.2.1</Version>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>C:\ws\FluentQueries\src\FluentQueries\FluentQueries.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
