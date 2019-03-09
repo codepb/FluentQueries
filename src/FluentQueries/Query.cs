@@ -23,6 +23,9 @@ namespace FluentQueries
     {
         private Expression<Func<T, bool>> _expression;
 
+        /// <summary>
+        /// Constructor to be used when inheriting from Query.
+        /// </summary>
         protected Query() { }
 
         /// <summary>

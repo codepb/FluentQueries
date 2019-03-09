@@ -1,0 +1,502 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>FluentQueries</name>
+    </assembly>
+    <members>
+        <member name="T:FluentQueries.IQuery`1">
+            <summary>
+            <para>
+            The Query interface, representing a query that can
+            be converted to an expression, or passed an object
+            to test if it satisfies the Query.
+            </para>
+            <para>
+            The Query can also be combined with other Queries
+            using either And or Or operators.
+            </para>
+            </summary>
+            <typeparam name="T">
+            The Type of object that will be Queried.
+            </typeparam>
+        </member>
+        <member name="P:FluentQueries.IQuery`1.And">
+            <summary>
+            Continues the Query, with another Query that must also evaluate to true.
+            </summary>
+            See <see cref="P:FluentQueries.IQuery`1.Or"/> to continue the Query with an Or operator.
+        </member>
+        <member name="P:FluentQueries.IQuery`1.Or">
+            <summary>
+            Continues the Query, with another Query, one of which (the current query,
+            or the continuation) must evaluate to true
+            </summary>
+            See <see cref="P:FluentQueries.IQuery`1.And"/> to continue the Query with an And operator.
+        </member>
+        <member name="M:FluentQueries.IQuery`1.AsExpression">
+            <summary>
+            Convert the Query to an expression.
+            </summary>
+            <returns>
+            An expression representing the Query.
+            </returns>
+        </member>
+        <member name="M:FluentQueries.IQuery`1.IsSatisfiedBy(`0)">
+            <summary>
+            Check whether a subject satisfies the Query.
+            </summary>
+            <param name="subject">The subject to evaluate against the Query.</param>
+            <returns>
+            True if the subject satisfies the Query, false otherwise.
+            </returns>
+            See <see cref="M:FluentQueries.ObjectExtensions.Satisfies``1(``0,FluentQueries.IQuery{``0})"/> to do the same operation, passing a Query to any object.
+        </member>
+        <member name="T:FluentQueries.ObjectExtensions">
+            <summary>
+            Extensions on objects to support Querying
+            </summary>
+        </member>
+        <member name="M:FluentQueries.ObjectExtensions.Satisfies``1(``0,FluentQueries.IQuery{``0})">
+            <summary>
+            Test an object against a <see cref="T:FluentQueries.IQuery`1"/>.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="obj">The object being tested</param>
+            <param name="query">The Query to evaluate the object against.</param>
+            <returns>True if the object satisfies the Query, false otherwise.</returns>
+            See <see cref="M:FluentQueries.IQuery`1.IsSatisfiedBy(`0)"/> to do the same operation, passing an object to a Query.
+        </member>
+        <member name="T:FluentQueries.Query`1">
+            <summary>
+            <para>
+            The Query class, representing a query that can
+            be converted to an expression, or passed an object
+            to test if it satisfies the Query.
+            </para>
+            <para>
+            The Query can also be combined with other Queries
+            using either And or Or operators. Using Has or Is
+            allows the user to continue defining the query against
+            the object itself, or one of the object's properties
+            </para>
+            </summary>
+            <typeparam name="T">
+            The Type of object that will be Queried.
+            </typeparam>
+        </member>
+        <member name="M:FluentQueries.Query`1.#ctor">
+            <summary>
+            Constructor to be used when inheriting from Query.
+            </summary>
+        </member>
+        <member name="M:FluentQueries.Query`1.#ctor(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Instantiate a new Query from an expression.
+            </summary>
+            <param name="expression">The expression the Query will represent.</param>
+        </member>
+        <member name="M:FluentQueries.Query`1.#ctor(FluentQueries.IQuery{`0})">
+            <summary>
+            Instantiate a new Query from another Query.
+            </summary>
+            <param name="query">The other Query the new Query will represent.</param>
+        </member>
+        <member name="P:FluentQueries.Query`1.And">
+            <summary>
+            Continues the Query, with another Query that must also evaluate to true.
+            </summary>
+            See <see cref="P:FluentQueries.Query`1.Or"/> to continue the Query with an Or operator.
+        </member>
+        <member name="P:FluentQueries.Query`1.Or">
+            <summary>
+            Continues the Query, with another Query, one of which (the current query,
+            or the continuation) must evaluate to true
+            </summary>
+            See <see cref="P:FluentQueries.Query`1.And"/> to continue the Query with an And operator.
+        </member>
+        <member name="M:FluentQueries.Query`1.Define(FluentQueries.IQuery{`0})">
+            <summary>
+            To be used when inheriting from Query to define the query. A more
+            convenient syntax than having to pass the query to the base constructor.
+            </summary>
+            <param name="query">The Query to setup this Query to represent</param>
+        </member>
+        <member name="M:FluentQueries.Query`1.AsExpression">
+            <summary>
+            Convert the Query to an expression.
+            </summary>
+            <returns>
+            An expression representing the Query.
+            </returns>
+        </member>
+        <member name="M:FluentQueries.Query`1.IsSatisfiedBy(`0)">
+            <summary>
+            Check whether a subject satisfies the Query.
+            </summary>
+            <param name="subject">The subject to evaluate against the Query.</param>
+            <returns>
+            True if the subject satisfies the Query, false otherwise.
+            </returns>
+            See <see cref="M:FluentQueries.ObjectExtensions.Satisfies``1(``0,FluentQueries.IQuery{``0})"/> to do the same operation, passing a Query to any object.
+        </member>
+        <member name="M:FluentQueries.Query`1.Has``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Select the property to query against.
+            </summary>
+            <typeparam name="TProp">The type of the property selected.</typeparam>
+            <param name="expression">A lambda expression to access the property.</param>
+            <returns>An object allowing the definition of a test to perform against the property</returns>
+        </member>
+        <member name="P:FluentQueries.Query`1.Is">
+            <summary>
+            Query against the object itself. The equivalent of doing <c>Has(x => x)</c>.
+            </summary>
+        </member>
+        <member name="M:FluentQueries.Query`1.op_Implicit(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})~FluentQueries.Query{`0}">
+            <summary>
+            Convert an expression to a Query implictly.
+            </summary>
+            <param name="query">The expression to convert to a Query.</param>
+        </member>
+        <member name="T:FluentQueries.QueryBuilderBooleanExtensions">
+            <summary>
+            Extension methods against boolean types for Queries.
+            </summary>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderBooleanExtensions.True``1(FluentQueries.QueryBuilderExpression{``0,System.Boolean})">
+            <summary>
+            The property is true.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if property is true, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderBooleanExtensions.False``1(FluentQueries.QueryBuilderExpression{``0,System.Boolean})">
+            <summary>
+            The property is false.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if property is false, false otherwise.</returns>
+        </member>
+        <member name="T:FluentQueries.QueryBuilderContinuation`1">
+            <summary>
+            Continuation of a Query, after using <see cref="P:FluentQueries.Query`1.And" /> or <see cref="P:FluentQueries.Query`1.Or"/>.
+            Allows for the definition of another Query to extend the previous.
+            </summary>
+            <typeparam name="T">The type of object the Query is against.</typeparam>
+        </member>
+        <member name="P:FluentQueries.QueryBuilderContinuation`1.Is">
+            <summary>
+            Query against the object itself. The equivalent of doing <c>Has(x => x)</c>.
+            </summary>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderContinuation`1.Has``1(System.Linq.Expressions.Expression{System.Func{`0,``0}})">
+            <summary>
+            Select the property to query against.
+            </summary>
+            <typeparam name="TProp">The type of the property selected.</typeparam>
+            <param name="expression">A lambda expression to access the property.</param>
+            <returns>An object allowing the definition of a test to perform against the property</returns>
+        </member>
+        <member name="T:FluentQueries.QueryBuilderExpression`2">
+            <summary>
+            Once a property has been selected to execute the Query against, this class
+            allows the selection of a test to perform against the property, such as 
+            <see cref="M:FluentQueries.QueryBuilderExpression`2.EqualTo(`1)"/> or <see cref="M:FluentQueries.QueryBuilderExpression`2.GreaterThan(`1)"/>.
+            </summary>
+            <typeparam name="T">The type of object the overall Query is against.</typeparam>
+            <typeparam name="TProp">The type of the property that will be tested.</typeparam>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.EqualTo(`1)">
+            <summary>
+            The property is equal to the supplied value.
+            </summary>
+            <param name="other">The value to compare the property to.</param>
+            <returns>True if the property is equal to the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.NotEqualTo(`1)">
+            <summary>
+            The property is not equal to the supplied value.
+            </summary>
+            <param name="other">The value to compare the property to.</param>
+            <returns>True if the property is not equal to the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.EqualToAnyOf(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            The property is equal to one of the supplied values.
+            </summary>
+            <param name="values">An enumerable of values to compare the property to.</param>
+            <returns>True if the property is equal to one of the supplied values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.NotEqualToAnyOf(System.Collections.Generic.IEnumerable{`1})">
+            <summary>
+            The property is not equal to all of the supplied values.
+            </summary>
+            <param name="values">An enumerable of values to compare the property to.</param>
+            <returns>True if the property is not equal to all of the supplied values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.EqualToAnyOf(`1[])">
+            <summary>
+            The property is equal to one of the supplied values.
+            </summary>
+            <param name="values">An array of values to compare the property to.</param>
+            <returns>True if the property is equal to one of the supplied values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.NotEqualToAnyOf(`1[])">
+            <summary>
+            The property is not equal to all of the supplied values.
+            </summary>
+            <param name="values">An array of values to compare the property to.</param>
+            <returns>True if the property is not equal to all of the supplied values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.GreaterThan(`1)">
+            <summary>
+            The property is greater than the supplied value.
+            </summary>
+            <param name="other">The value to compare the property to.</param>
+            <returns>True if the property is greater than the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.GreaterThanOrEqualTo(`1)">
+            <summary>
+            The property is greater than or equal to the supplied value.
+            </summary>
+            <param name="other">The value to compare the property to.</param>
+            <returns>True if the property is greater than or equal to the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.LessThan(`1)">
+            <summary>
+            The property is less than the supplied value.
+            </summary>
+            <param name="other">The value to compare the property to.</param>
+            <returns>True if the property is less than the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.LessThanOrEqualTo(`1)">
+            <summary>
+            The property is less than or equal to the supplied value.
+            </summary>
+            <param name="other">The value to compare the property to.</param>
+            <returns>True if the property is less than or equal to the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.Satisfying(FluentQueries.IQuery{`1})">
+            <summary>
+            The property satisfies the supplied Query.
+            </summary>
+            <param name="query">The query to test the property against.</param>
+            <returns>True if the property satisfies the supplied Query, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.Satisfying(System.Linq.Expressions.Expression{System.Func{`1,System.Boolean}})">
+            <summary>
+            The property satisfies the supplied Expression.
+            </summary>
+            <param name="query">The expression to test the property against.</param>
+            <returns>True if the property satisfies the supplied Query, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.Null">
+            <summary>
+            The property is null.
+            </summary>
+            <returns>True if the property is null, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderExpression`2.NotNull">
+            <summary>
+            The property is not null
+            </summary>
+            <returns>True if the property is not null, false otherwise.</returns>
+        </member>
+        <member name="T:FluentQueries.QueryBuilderIEnumerableExtensions">
+            <summary>
+            Extension methods against IEnumerable types for Queries.
+            </summary>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Containing``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},``1)">
+            <summary>
+            The property contains the supplied value.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The value to test if contained by the property.</param>
+            <returns>True if the property contans the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotContaining``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},``1)">
+            <summary>
+            The property does not contain the supplied value.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The value to test if not contained by the property.</param>
+            <returns>True if the property does not contans the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEmpty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            The property contains at least one value.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains at least one value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Empty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}})">
+            <summary>
+            The property contains no values.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains no values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has no values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has all values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value not satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.EqualToSequence``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            The property contains the same values in the same order as the supplied enumerable.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The enumerable to compare the property to.</param>
+            <returns>True if the property contains the same elements in the same order as the supplied enumerable, false otherwise</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEqualToSequence``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Collections.Generic.IEnumerable{``1})">
+            <summary>
+            The property does not contain the same values in the same order as the supplied enumerable.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The enumerable to compare the property to.</param>
+            <returns>True if the property does not contain the same elements in the same order as the supplied enumerable, false otherwise</returns>
+        </member>
+        <member name="T:FluentQueries.QueryBuilderStringExpressionExtensions">
+            <summary>
+            Extension methods against string types for Queries.
+            </summary>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.Containing``1(FluentQueries.QueryBuilderExpression{``0,System.String},System.String)">
+            <summary>
+            The property contains the supplied string.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The value to test the property contains.</param>
+            <returns>True if the property contains the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.NotContaining``1(FluentQueries.QueryBuilderExpression{``0,System.String},System.String)">
+            <summary>
+            The property does not contain the supplied string.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The value to test the property does not contain.</param>
+            <returns>True if the property does not contain the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.StartingWith``1(FluentQueries.QueryBuilderExpression{``0,System.String},System.String)">
+            <summary>
+            The property starts with the supplied string.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The value to test the property starts with.</param>
+            <returns>True if the property starts with the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.NotStartingWith``1(FluentQueries.QueryBuilderExpression{``0,System.String},System.String)">
+            <summary>
+            The property does not start with the supplied string.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The value to test the property does not start with.</param>
+            <returns>True if the property does not start with the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.EndingWith``1(FluentQueries.QueryBuilderExpression{``0,System.String},System.String)">
+            <summary>
+            The property ends with the supplied string.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The value to test the property ends with.</param>
+            <returns>True if the property ends with the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.NotEndingWith``1(FluentQueries.QueryBuilderExpression{``0,System.String},System.String)">
+            <summary>
+            The property does not end with the supplied string.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="other">The value to test the property does not end with.</param>
+            <returns>True if the property does not end with the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.NullOrWhitespace``1(FluentQueries.QueryBuilderExpression{``0,System.String})">
+            <summary>
+            The property is null or whitespace.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property is null or whitespace, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.NotNullOrWhitespace``1(FluentQueries.QueryBuilderExpression{``0,System.String})">
+            <summary>
+            The property is not null or whitespace.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property is not null or whitespace, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.NullOrEmpty``1(FluentQueries.QueryBuilderExpression{``0,System.String})">
+            <summary>
+            The property is null or empty.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property is null or empty, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderStringExpressionExtensions.NotNullOrEmpty``1(FluentQueries.QueryBuilderExpression{``0,System.String})">
+            <summary>
+            The property is not null or empty.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property is not null or empty, false otherwise.</returns>
+        </member>
+    </members>
+</doc>

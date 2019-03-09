@@ -62,6 +62,7 @@ namespace FluentQueries
 
         /// <summary>
         /// The property contains no values.
+        /// </summary>
         /// <typeparam name="T">The type of object the Query is defined against.</typeparam>
         /// <typeparam name="T1">The type of the enumerable</typeparam>
         /// <param name="queryBuilderExpression">The Query.</param>
