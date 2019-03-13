@@ -441,7 +441,7 @@
             <param name="queryBuilderExpression">The Query.</param>
             <returns>True if the property contains no values, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Func{``2,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Linq.Expressions.Expression{System.Func{``2,System.Boolean}})">
             <summary>
             The property has at least one value satisfying the supplied function.
             </summary>
@@ -452,7 +452,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value satisfying the supplied function.
             </summary>
@@ -462,7 +462,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value satisfying the supplied function.
             </summary>
@@ -472,7 +472,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value satisfying the supplied function.
             </summary>
@@ -482,7 +482,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value satisfying the supplied function.
             </summary>
@@ -492,7 +492,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value satisfying the supplied function.
             </summary>
@@ -502,7 +502,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Func{``2,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Linq.Expressions.Expression{System.Func{``2,System.Boolean}})">
             <summary>
             The property has no values satisfying the supplied function.
             </summary>
@@ -513,7 +513,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has no values satisfying the supplied function.
             </summary>
@@ -523,7 +523,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has no values satisfying the supplied function.
             </summary>
@@ -533,7 +533,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has no values satisfying the supplied function.
             </summary>
@@ -543,7 +543,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has no values satisfying the supplied function.
             </summary>
@@ -553,7 +553,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has no values satisfying the supplied function.
             </summary>
@@ -563,7 +563,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Func{``2,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Linq.Expressions.Expression{System.Func{``2,System.Boolean}})">
             <summary>
             The property has all values satisfying the supplied function.
             </summary>
@@ -574,7 +574,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has all values satisfying the supplied function.
             </summary>
@@ -584,7 +584,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has all values satisfying the supplied function.
             </summary>
@@ -594,7 +594,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has all values satisfying the supplied function.
             </summary>
@@ -604,7 +604,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has all values satisfying the supplied function.
             </summary>
@@ -614,7 +614,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has all values satisfying the supplied function.
             </summary>
@@ -624,7 +624,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Func{``2,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Linq.Expressions.Expression{System.Func{``2,System.Boolean}})">
             <summary>
             The property has at least one value not satisfying the supplied function.
             </summary>
@@ -635,7 +635,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value not satisfying the supplied function.
             </summary>
@@ -645,7 +645,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value not satisfying the supplied function.
             </summary>
@@ -655,7 +655,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value not satisfying the supplied function.
             </summary>
@@ -665,7 +665,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value not satisfying the supplied function.
             </summary>
@@ -675,7 +675,7 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Func{``1,System.Boolean})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Boolean}})">
             <summary>
             The property has at least one value not satisfying the supplied function.
             </summary>

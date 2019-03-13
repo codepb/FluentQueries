@@ -208,11 +208,13 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAny<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Func<T1, bool> func) where TEnumerable : IEnumerable<T1>
+        public static Query<T> WithAny<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Expression<Func<T1, bool>> func) where TEnumerable : IEnumerable<T1>
         {
-            var otherEntity = Expression.Constant(func, typeof(Func<T1, bool>));
-            var method = typeof(Enumerable).GetMethods().FirstOrDefault(m => m.Name == "Any" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
-            var expression = Expression.Call(method, queryBuilderExpression._expression.Body, otherEntity);
+            var otherEntity = Expression.Constant(func, typeof(Expression<Func<T1, bool>>));
+            var convertToQueryable = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "AsQueryable" && m.GetParameters().Length == 1)?.MakeGenericMethod(typeof(T1));
+            var queryableExpression = Expression.Call(convertToQueryable, queryBuilderExpression._expression.Body);
+            var method = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "Any" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));           
+            var expression = Expression.Call(method, queryableExpression, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
@@ -225,7 +227,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAny<T, IEnumerable<T1>, T1>(queryBuilderExpression, func);
         }
@@ -238,7 +240,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, ICollection<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, ICollection<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAny<T, ICollection<T1>, T1>(queryBuilderExpression, func);
         }
@@ -251,7 +253,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, IReadOnlyCollection<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, IReadOnlyCollection<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAny<T, IReadOnlyCollection<T1>, T1>(queryBuilderExpression, func);
         }
@@ -264,7 +266,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, IList<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, IList<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAny<T, IList<T1>, T1>(queryBuilderExpression, func);
         }
@@ -277,7 +279,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, List<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAny<T, T1>(this QueryBuilderExpression<T, List<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAny<T, List<T1>, T1>(queryBuilderExpression, func);
         }
@@ -291,11 +293,13 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithoutAny<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Func<T1, bool> func) where TEnumerable : IEnumerable<T1>
+        public static Query<T> WithoutAny<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Expression<Func<T1, bool>> func) where TEnumerable : IEnumerable<T1>
         {
-            var otherEntity = Expression.Constant(func, typeof(Func<T1, bool>));
-            var method = typeof(Enumerable).GetMethods().FirstOrDefault(m => m.Name == "Any" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
-            var expression = Expression.Call(method, queryBuilderExpression._expression.Body, otherEntity);
+            var otherEntity = Expression.Constant(func, typeof(Expression<Func<T1, bool>>));
+            var convertToQueryable = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "AsQueryable" && m.GetParameters().Length == 1)?.MakeGenericMethod(typeof(T1));
+            var queryableExpression = Expression.Call(convertToQueryable, queryBuilderExpression._expression.Body);
+            var method = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "Any" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
+            var expression = Expression.Call(method, queryableExpression, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(Expression.Not(expression), queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
@@ -308,7 +312,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithoutAny<T, IEnumerable<T1>, T1>(queryBuilderExpression, func);
         }
@@ -321,7 +325,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, ICollection<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, ICollection<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithoutAny<T, ICollection<T1>, T1>(queryBuilderExpression, func);
         }
@@ -334,7 +338,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, IReadOnlyCollection<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, IReadOnlyCollection<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithoutAny<T, IReadOnlyCollection<T1>, T1>(queryBuilderExpression, func);
         }
@@ -347,7 +351,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, IList<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, IList<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithoutAny<T, IList<T1>, T1>(queryBuilderExpression, func);
         }
@@ -360,7 +364,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, List<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithoutAny<T, T1>(this QueryBuilderExpression<T, List<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithoutAny<T, List<T1>, T1>(queryBuilderExpression, func);
         }
@@ -374,11 +378,13 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAll<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Func<T1, bool> func) where TEnumerable : IEnumerable<T1>
+        public static Query<T> WithAll<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Expression<Func<T1, bool>> func) where TEnumerable : IEnumerable<T1>
         {
-            var otherEntity = Expression.Constant(func, typeof(Func<T1, bool>));
-            var method = typeof(Enumerable).GetMethods().FirstOrDefault(m => m.Name == "All" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
-            var expression = Expression.Call(method, queryBuilderExpression._expression.Body, otherEntity);
+            var otherEntity = Expression.Constant(func, typeof(Expression<Func<T1, bool>>));
+            var convertToQueryable = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "AsQueryable" && m.GetParameters().Length == 1)?.MakeGenericMethod(typeof(T1));
+            var queryableExpression = Expression.Call(convertToQueryable, queryBuilderExpression._expression.Body);
+            var method = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "All" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
+            var expression = Expression.Call(method, queryableExpression, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
@@ -391,7 +397,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAll<T, IEnumerable<T1>, T1>(queryBuilderExpression, func);
         }
@@ -404,7 +410,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, ICollection<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, ICollection<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAll<T, ICollection<T1>, T1>(queryBuilderExpression, func);
         }
@@ -417,7 +423,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, IReadOnlyCollection<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, IReadOnlyCollection<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAll<T, IReadOnlyCollection<T1>, T1>(queryBuilderExpression, func);
         }
@@ -430,7 +436,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, IList<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, IList<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAll<T, IList<T1>, T1>(queryBuilderExpression, func);
         }
@@ -443,7 +449,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
-        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, List<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithAll<T, T1>(this QueryBuilderExpression<T, List<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithAll<T, List<T1>, T1>(queryBuilderExpression, func);
         }
@@ -457,11 +463,13 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
-        public static Query<T> WithNotAll<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Func<T1, bool> func) where TEnumerable : IEnumerable<T1>
+        public static Query<T> WithNotAll<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Expression<Func<T1, bool>> func) where TEnumerable : IEnumerable<T1>
         {
-            var otherEntity = Expression.Constant(func, typeof(Func<T1, bool>));
-            var method = typeof(Enumerable).GetMethods().FirstOrDefault(m => m.Name == "All" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
-            var expression = Expression.Call(method, queryBuilderExpression._expression.Body, otherEntity);
+            var otherEntity = Expression.Constant(func, typeof(Expression<Func<T1, bool>>));
+            var convertToQueryable = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "AsQueryable" && m.GetParameters().Length == 1)?.MakeGenericMethod(typeof(T1));
+            var queryableExpression = Expression.Call(convertToQueryable, queryBuilderExpression._expression.Body);
+            var method = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "All" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
+            var expression = Expression.Call(method, queryableExpression, otherEntity);
             var lambda = Expression.Lambda<Func<T, bool>>(Expression.Not(expression), queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
@@ -474,7 +482,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
-        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, IEnumerable<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithNotAll<T, IEnumerable<T1>, T1>(queryBuilderExpression, func);
         }
@@ -487,7 +495,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
-        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, ICollection<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, ICollection<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithNotAll<T, ICollection<T1>, T1>(queryBuilderExpression, func);
         }
@@ -500,7 +508,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
-        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, IReadOnlyCollection<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, IReadOnlyCollection<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithNotAll<T, IReadOnlyCollection<T1>, T1>(queryBuilderExpression, func);
         }
@@ -513,7 +521,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
-        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, IList<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, IList<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithNotAll<T, IList<T1>, T1>(queryBuilderExpression, func);
         }
@@ -526,7 +534,7 @@ namespace FluentQueries
         /// <param name="queryBuilderExpression">The Query.</param>
         /// <param name="func">The function to test the values of the enumerable property against.</param>
         /// <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
-        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, List<T1>> queryBuilderExpression, Func<T1, bool> func)
+        public static Query<T> WithNotAll<T, T1>(this QueryBuilderExpression<T, List<T1>> queryBuilderExpression, Expression<Func<T1, bool>> func)
         {
             return WithNotAll<T, List<T1>, T1>(queryBuilderExpression, func);
         }
