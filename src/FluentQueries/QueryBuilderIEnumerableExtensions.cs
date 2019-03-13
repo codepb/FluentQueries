@@ -210,11 +210,10 @@ namespace FluentQueries
         /// <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         public static Query<T> WithAny<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Expression<Func<T1, bool>> func) where TEnumerable : IEnumerable<T1>
         {
-            var otherEntity = Expression.Constant(func, typeof(Expression<Func<T1, bool>>));
             var convertToQueryable = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "AsQueryable" && m.GetParameters().Length == 1)?.MakeGenericMethod(typeof(T1));
             var queryableExpression = Expression.Call(convertToQueryable, queryBuilderExpression._expression.Body);
             var method = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "Any" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));           
-            var expression = Expression.Call(method, queryableExpression, otherEntity);
+            var expression = Expression.Call(method, queryableExpression, func);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
@@ -295,11 +294,10 @@ namespace FluentQueries
         /// <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
         public static Query<T> WithoutAny<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Expression<Func<T1, bool>> func) where TEnumerable : IEnumerable<T1>
         {
-            var otherEntity = Expression.Constant(func, typeof(Expression<Func<T1, bool>>));
             var convertToQueryable = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "AsQueryable" && m.GetParameters().Length == 1)?.MakeGenericMethod(typeof(T1));
             var queryableExpression = Expression.Call(convertToQueryable, queryBuilderExpression._expression.Body);
             var method = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "Any" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
-            var expression = Expression.Call(method, queryableExpression, otherEntity);
+            var expression = Expression.Call(method, queryableExpression, func);
             var lambda = Expression.Lambda<Func<T, bool>>(Expression.Not(expression), queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
@@ -380,11 +378,10 @@ namespace FluentQueries
         /// <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         public static Query<T> WithAll<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Expression<Func<T1, bool>> func) where TEnumerable : IEnumerable<T1>
         {
-            var otherEntity = Expression.Constant(func, typeof(Expression<Func<T1, bool>>));
             var convertToQueryable = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "AsQueryable" && m.GetParameters().Length == 1)?.MakeGenericMethod(typeof(T1));
             var queryableExpression = Expression.Call(convertToQueryable, queryBuilderExpression._expression.Body);
             var method = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "All" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
-            var expression = Expression.Call(method, queryableExpression, otherEntity);
+            var expression = Expression.Call(method, queryableExpression, func);
             var lambda = Expression.Lambda<Func<T, bool>>(expression, queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
@@ -465,11 +462,10 @@ namespace FluentQueries
         /// <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
         public static Query<T> WithNotAll<T, TEnumerable, T1>(this QueryBuilderExpression<T, TEnumerable> queryBuilderExpression, Expression<Func<T1, bool>> func) where TEnumerable : IEnumerable<T1>
         {
-            var otherEntity = Expression.Constant(func, typeof(Expression<Func<T1, bool>>));
             var convertToQueryable = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "AsQueryable" && m.GetParameters().Length == 1)?.MakeGenericMethod(typeof(T1));
             var queryableExpression = Expression.Call(convertToQueryable, queryBuilderExpression._expression.Body);
             var method = typeof(Queryable).GetMethods().FirstOrDefault(m => m.Name == "All" && m.GetParameters().Length == 2)?.MakeGenericMethod(typeof(T1));
-            var expression = Expression.Call(method, queryableExpression, otherEntity);
+            var expression = Expression.Call(method, queryableExpression, func);
             var lambda = Expression.Lambda<Func<T, bool>>(Expression.Not(expression), queryBuilderExpression._expression.Parameters);
             return queryBuilderExpression._continueWith(new Query<T>(lambda));
         }
