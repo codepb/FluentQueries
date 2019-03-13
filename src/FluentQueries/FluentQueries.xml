@@ -309,25 +309,37 @@
             Extension methods against IEnumerable types for Queries.
             </summary>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Containing``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},``1)">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Containing``3(FluentQueries.QueryBuilderExpression{``0,``1},``2)">
             <summary>
             The property contains the supplied value.
             </summary>
             <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
             <typeparam name="T1">The type of the enumerable</typeparam>
             <param name="queryBuilderExpression">The Query.</param>
             <param name="other">The value to test if contained by the property.</param>
             <returns>True if the property contans the supplied value, false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotContaining``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},``1)">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotContaining``3(FluentQueries.QueryBuilderExpression{``0,``1},``2)">
             <summary>
             The property does not contain the supplied value.
             </summary>
             <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
             <typeparam name="T1">The type of the enumerable</typeparam>
             <param name="queryBuilderExpression">The Query.</param>
             <param name="other">The value to test if not contained by the property.</param>
             <returns>True if the property does not contans the supplied value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEmpty``3(FluentQueries.QueryBuilderExpression{``0,``1})">
+            <summary>
+            The property contains at least one value.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains at least one value, false otherwise.</returns>
         </member>
         <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEmpty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}})">
             <summary>
@@ -338,6 +350,52 @@
             <param name="queryBuilderExpression">The Query.</param>
             <returns>True if the property contains at least one value, false otherwise.</returns>
         </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEmpty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}})">
+            <summary>
+            The property contains at least one value.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains at least one value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEmpty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}})">
+            <summary>
+            The property contains at least one value.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains at least one value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEmpty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}})">
+            <summary>
+            The property contains at least one value.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains at least one value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEmpty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}})">
+            <summary>
+            The property contains at least one value.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains at least one value, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Empty``3(FluentQueries.QueryBuilderExpression{``0,``1})">
+            <summary>
+            The property contains no values.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains no values, false otherwise.</returns>
+        </member>
         <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Empty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}})">
             <summary>
             The property contains no values.
@@ -346,6 +404,53 @@
             <typeparam name="T1">The type of the enumerable</typeparam>
             <param name="queryBuilderExpression">The Query.</param>
             <returns>True if the property contains no values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Empty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}})">
+            <summary>
+            The property contains no values.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains no values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Empty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}})">
+            <summary>
+            The property contains no values.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains no values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Empty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}})">
+            <summary>
+            The property contains no values.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains no values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.Empty``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}})">
+            <summary>
+            The property contains no values.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <returns>True if the property contains no values, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Func{``2,System.Boolean})">
+            <summary>
+            The property has at least one value satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         </member>
         <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
             <summary>
@@ -357,6 +462,57 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
         </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has at least one value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Func{``2,System.Boolean})">
+            <summary>
+            The property has no values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
+        </member>
         <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
             <summary>
             The property has no values satisfying the supplied function.
@@ -366,6 +522,57 @@
             <param name="queryBuilderExpression">The Query.</param>
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has no values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has no values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has no values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithoutAny``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has no values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains no values satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Func{``2,System.Boolean})">
+            <summary>
+            The property has all values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         </member>
         <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
             <summary>
@@ -377,6 +584,57 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
         </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has all values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has all values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has all values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has all values satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property has every value satisfying the supplied function, false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Func{``2,System.Boolean})">
+            <summary>
+            The property has at least one value not satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
+        </member>
         <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``1,System.Boolean})">
             <summary>
             The property has at least one value not satisfying the supplied function.
@@ -387,21 +645,63 @@
             <param name="func">The function to test the values of the enumerable property against.</param>
             <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.EqualToSequence``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Collections.Generic.IEnumerable{``1})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.ICollection{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value not satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IReadOnlyCollection{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value not satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IList{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value not satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.WithNotAll``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.List{``1}},System.Func{``1,System.Boolean})">
+            <summary>
+            The property has at least one value not satisfying the supplied function.
+            </summary>
+            <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="T1">The type of the enumerable</typeparam>
+            <param name="queryBuilderExpression">The Query.</param>
+            <param name="func">The function to test the values of the enumerable property against.</param>
+            <returns>True if the property contains at least one value that does not satisfy the supplied function. false otherwise.</returns>
+        </member>
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.EqualToSequence``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Collections.Generic.IEnumerable{``2})">
             <summary>
             The property contains the same values in the same order as the supplied enumerable.
             </summary>
             <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
             <typeparam name="T1">The type of the enumerable</typeparam>
             <param name="queryBuilderExpression">The Query.</param>
             <param name="other">The enumerable to compare the property to.</param>
             <returns>True if the property contains the same elements in the same order as the supplied enumerable, false otherwise</returns>
         </member>
-        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEqualToSequence``2(FluentQueries.QueryBuilderExpression{``0,System.Collections.Generic.IEnumerable{``1}},System.Collections.Generic.IEnumerable{``1})">
+        <member name="M:FluentQueries.QueryBuilderIEnumerableExtensions.NotEqualToSequence``3(FluentQueries.QueryBuilderExpression{``0,``1},System.Collections.Generic.IEnumerable{``2})">
             <summary>
             The property does not contain the same values in the same order as the supplied enumerable.
             </summary>
             <typeparam name="T">The type of object the Query is defined against.</typeparam>
+            <typeparam name="TEnumerable">The enumerable type (to support types inheriting IEnumerable).</typeparam>
             <typeparam name="T1">The type of the enumerable</typeparam>
             <param name="queryBuilderExpression">The Query.</param>
             <param name="other">The enumerable to compare the property to.</param>
